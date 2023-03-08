@@ -7,10 +7,17 @@
 
 import SwiftUI
 
-struct MainView: View {
-    var viewModel: MainViewModelRepresentable
+struct MainView<T>: View where T: MainViewModelRepresentable {
+    @StateObject var viewModel: T
+    @State var refresh: Bool = false
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(viewModel.characters, id: \.self) { character in
+            Text(character.name)
+        }
+        .listStyle(.plain)
+        .onAppear {
+            viewModel.fetchCharacters()
+        }
     }
 }

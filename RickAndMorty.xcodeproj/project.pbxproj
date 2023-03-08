@@ -20,6 +20,13 @@
 		C8916BCB29B85BB6003F3295 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BCA29B85BB6003F3295 /* MainCoordinator.swift */; };
 		C8916BCD29B85C15003F3295 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BCC29B85C15003F3295 /* MainViewModel.swift */; };
 		C8916BCF29B85CC5003F3295 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BCE29B85CC5003F3295 /* MainView.swift */; };
+		C8916BD329B868AF003F3295 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BD229B868AF003F3295 /* Endpoint.swift */; };
+		C8916BD629B8690F003F3295 /* APICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BD529B8690F003F3295 /* APICacheManager.swift */; };
+		C8916BD829B86A53003F3295 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BD729B86A53003F3295 /* APIManager.swift */; };
+		C8916BDA29B86AF6003F3295 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BD929B86AF6003F3295 /* Request.swift */; };
+		C8916BDD29B86F1B003F3295 /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BDC29B86F1B003F3295 /* Failure.swift */; };
+		C8916BE029B87132003F3295 /* CharacterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BDF29B87132003F3295 /* CharacterResponse.swift */; };
+		C8916BE229B8735E003F3295 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916BE129B8735E003F3295 /* Character.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +64,13 @@
 		C8916BCA29B85BB6003F3295 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		C8916BCC29B85C15003F3295 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C8916BCE29B85CC5003F3295 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C8916BD229B868AF003F3295 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		C8916BD529B8690F003F3295 /* APICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICacheManager.swift; sourceTree = "<group>"; };
+		C8916BD729B86A53003F3295 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		C8916BD929B86AF6003F3295 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C8916BDC29B86F1B003F3295 /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
+		C8916BDF29B87132003F3295 /* CharacterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponse.swift; sourceTree = "<group>"; };
+		C8916BE129B8735E003F3295 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +121,8 @@
 		C8916B8B29B8594C003F3295 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				C8916BD429B868F3003F3295 /* Helpers */,
+				C8916BD029B86849003F3295 /* Networking */,
 				C8916BBC29B85A71003F3295 /* Protocols */,
 				C8916BC629B85B7B003F3295 /* Views */,
 				C8916B8C29B8594C003F3295 /* AppDelegate.swift */,
@@ -165,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				C8916BCA29B85BB6003F3295 /* MainCoordinator.swift */,
+				C8916BDE29B8710D003F3295 /* Model */,
 				C8916BC929B85B9D003F3295 /* View */,
 				C8916BC829B85B93003F3295 /* ViewModel */,
 			);
@@ -185,6 +202,50 @@
 				C8916BCE29B85CC5003F3295 /* MainView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C8916BD029B86849003F3295 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C8916BDB29B86F0A003F3295 /* Error */,
+				C8916BD129B86869003F3295 /* API */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C8916BD129B86869003F3295 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C8916BD229B868AF003F3295 /* Endpoint.swift */,
+				C8916BD729B86A53003F3295 /* APIManager.swift */,
+				C8916BD929B86AF6003F3295 /* Request.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C8916BD429B868F3003F3295 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C8916BD529B8690F003F3295 /* APICacheManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C8916BDB29B86F0A003F3295 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				C8916BDC29B86F1B003F3295 /* Failure.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		C8916BDE29B8710D003F3295 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8916BDF29B87132003F3295 /* CharacterResponse.swift */,
+				C8916BE129B8735E003F3295 /* Character.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,12 +378,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8916BE029B87132003F3295 /* CharacterResponse.swift in Sources */,
 				C8916BCD29B85C15003F3295 /* MainViewModel.swift in Sources */,
+				C8916BDD29B86F1B003F3295 /* Failure.swift in Sources */,
+				C8916BDA29B86AF6003F3295 /* Request.swift in Sources */,
+				C8916BD629B8690F003F3295 /* APICacheManager.swift in Sources */,
+				C8916BD329B868AF003F3295 /* Endpoint.swift in Sources */,
 				C8916BCF29B85CC5003F3295 /* MainView.swift in Sources */,
+				C8916BD829B86A53003F3295 /* APIManager.swift in Sources */,
 				C8916BBF29B85A86003F3295 /* Router.swift in Sources */,
 				C8916BCB29B85BB6003F3295 /* MainCoordinator.swift in Sources */,
 				C8916B8D29B8594C003F3295 /* AppDelegate.swift in Sources */,
 				C8916BC329B85B1D003F3295 /* AppTransition.swift in Sources */,
+				C8916BE229B8735E003F3295 /* Character.swift in Sources */,
 				C8916BC529B85B40003F3295 /* App.swift in Sources */,
 				C8916BC129B85AAA003F3295 /* Coordinator.swift in Sources */,
 			);
