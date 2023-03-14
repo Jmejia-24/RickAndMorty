@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C85348CD29C0568D001537FB /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85348CC29C0568D001537FB /* CacheImage.swift */; };
+		C85348CF29C0570D001537FB /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85348CE29C0570D001537FB /* ImageCacheManager.swift */; };
+		C85348D129C060BC001537FB /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85348D029C060BC001537FB /* CharacterStatus.swift */; };
 		C8916B8D29B8594C003F3295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916B8C29B8594C003F3295 /* AppDelegate.swift */; };
 		C8916B9629B8594E003F3295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8916B9529B8594E003F3295 /* Assets.xcassets */; };
 		C8916B9929B8594E003F3295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8916B9729B8594E003F3295 /* LaunchScreen.storyboard */; };
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C85348CC29C0568D001537FB /* CacheImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImage.swift; sourceTree = "<group>"; };
+		C85348CE29C0570D001537FB /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		C85348D029C060BC001537FB /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
 		C8916B8929B8594C003F3295 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8916B8C29B8594C003F3295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8916B9529B8594E003F3295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C85348CB29C0567B001537FB /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				C85348CC29C0568D001537FB /* CacheImage.swift */,
+				C85348CE29C0570D001537FB /* ImageCacheManager.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		C8916B8029B8594C003F3295 = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +241,7 @@
 		C8916BD429B868F3003F3295 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C85348CB29C0567B001537FB /* Image */,
 				C8916BD529B8690F003F3295 /* APICacheManager.swift */,
 			);
 			path = Helpers;
@@ -244,6 +260,7 @@
 			children = (
 				C8916BDF29B87132003F3295 /* CharacterResponse.swift */,
 				C8916BE129B8735E003F3295 /* Character.swift */,
+				C85348D029C060BC001537FB /* CharacterStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,15 +399,18 @@
 				C8916BCD29B85C15003F3295 /* MainViewModel.swift in Sources */,
 				C8916BDD29B86F1B003F3295 /* Failure.swift in Sources */,
 				C8916BDA29B86AF6003F3295 /* Request.swift in Sources */,
+				C85348CF29C0570D001537FB /* ImageCacheManager.swift in Sources */,
 				C8916BD629B8690F003F3295 /* APICacheManager.swift in Sources */,
 				C8916BD329B868AF003F3295 /* Endpoint.swift in Sources */,
 				C8916BCF29B85CC5003F3295 /* MainView.swift in Sources */,
 				C8916BD829B86A53003F3295 /* APIManager.swift in Sources */,
+				C85348CD29C0568D001537FB /* CacheImage.swift in Sources */,
 				C8916BBF29B85A86003F3295 /* Router.swift in Sources */,
 				C8916BCB29B85BB6003F3295 /* MainCoordinator.swift in Sources */,
 				C8916B8D29B8594C003F3295 /* AppDelegate.swift in Sources */,
 				C8916BC329B85B1D003F3295 /* AppTransition.swift in Sources */,
 				C8916BE229B8735E003F3295 /* Character.swift in Sources */,
+				C85348D129C060BC001537FB /* CharacterStatus.swift in Sources */,
 				C8916BC529B85B40003F3295 /* App.swift in Sources */,
 				C8916BC129B85AAA003F3295 /* Coordinator.swift in Sources */,
 			);

@@ -10,6 +10,7 @@ import Foundation
 struct Character: Codable, Hashable {
     let id: Int
     let name: String
+    let status: CharacterStatus
     let species: String
     let type: String
     let image: String

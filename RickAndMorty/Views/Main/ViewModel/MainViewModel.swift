@@ -11,6 +11,8 @@ import Combine
 protocol MainViewModelRepresentable: ObservableObject {
     var characters: [Character] { get }
     func fetchCharacters()
+    func convertOffsetToRotation(_ rect: CGRect) -> CGFloat
+    func buttomPadding(_ size: CGSize) -> CGFloat
 }
 
 final class MainViewModel<R: AppRouter> {
@@ -41,5 +43,20 @@ extension MainViewModel: MainViewModelRepresentable {
         APIManager.shared.execute(.listCharactersRequests)
             .sink(receiveCompletion: completion, receiveValue: recieved)
             .store(in: &cancellables)
+    }
+    
+    func convertOffsetToRotation(_ rect: CGRect) -> CGFloat {
+        let cellHeight = rect.height + 20
+        let minY = rect.minY - 20
+        let progress = minY < 0 ? (minY / cellHeight) : 0
+        let constrainedProgress = min(-progress, 1.0)
+        return constrainedProgress * 90
+    }
+    
+    func buttomPadding(_ size: CGSize = .zero) -> CGFloat {
+        let cellHeight: CGFloat = 200
+        let scrollViewHeight: CGFloat = size.height
+        
+        return scrollViewHeight - cellHeight - 40
     }
 }
