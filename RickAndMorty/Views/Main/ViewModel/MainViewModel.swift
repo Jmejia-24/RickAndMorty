@@ -17,9 +17,14 @@ protocol MainViewModelRepresentable: ObservableObject {
 
 final class MainViewModel<R: AppRouter> {
     var router: R?
-    
+    private let apiStore: APIManagerStore
     private var cancellables = Set<AnyCancellable>()
+    
     @Published private(set) var characters = [Character]()
+    
+    init(apiStore: APIManagerStore = APIManager.shared) {
+        self.apiStore = apiStore
+    }
 }
 
 extension MainViewModel: MainViewModelRepresentable {
@@ -40,7 +45,7 @@ extension MainViewModel: MainViewModelRepresentable {
             }
         }
         
-        APIManager.shared.execute(.listCharactersRequests)
+        apiStore.execute(.listCharactersRequests)
             .sink(receiveCompletion: completion, receiveValue: recieved)
             .store(in: &cancellables)
     }

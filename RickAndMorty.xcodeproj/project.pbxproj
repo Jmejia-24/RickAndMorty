@@ -10,6 +10,9 @@
 		C85348CD29C0568D001537FB /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85348CC29C0568D001537FB /* CacheImage.swift */; };
 		C85348CF29C0570D001537FB /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85348CE29C0570D001537FB /* ImageCacheManager.swift */; };
 		C85348D129C060BC001537FB /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85348D029C060BC001537FB /* CharacterStatus.swift */; };
+		C86FE8D529C19EC500C47FB1 /* APIManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FE8D429C19EC500C47FB1 /* APIManagerMock.swift */; };
+		C86FE8DB29C1A1A700C47FB1 /* character.json in Resources */ = {isa = PBXBuildFile; fileRef = C86FE8DA29C1A1A700C47FB1 /* character.json */; };
+		C86FE8DE29C1A4F500C47FB1 /* MainViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FE8DD29C1A4F500C47FB1 /* MainViewModelTest.swift */; };
 		C8916B8D29B8594C003F3295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8916B8C29B8594C003F3295 /* AppDelegate.swift */; };
 		C8916B9629B8594E003F3295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8916B9529B8594E003F3295 /* Assets.xcassets */; };
 		C8916B9929B8594E003F3295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8916B9729B8594E003F3295 /* LaunchScreen.storyboard */; };
@@ -53,6 +56,9 @@
 		C85348CC29C0568D001537FB /* CacheImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImage.swift; sourceTree = "<group>"; };
 		C85348CE29C0570D001537FB /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		C85348D029C060BC001537FB /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
+		C86FE8D429C19EC500C47FB1 /* APIManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerMock.swift; sourceTree = "<group>"; };
+		C86FE8DA29C1A1A700C47FB1 /* character.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = character.json; sourceTree = "<group>"; };
+		C86FE8DD29C1A4F500C47FB1 /* MainViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTest.swift; sourceTree = "<group>"; };
 		C8916B8929B8594C003F3295 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8916B8C29B8594C003F3295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8916B9529B8594E003F3295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +119,30 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		C86FE8D229C19E8300C47FB1 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C86FE8D429C19EC500C47FB1 /* APIManagerMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C86FE8D329C19E8E00C47FB1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C86FE8DA29C1A1A700C47FB1 /* character.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C86FE8DC29C1A4BB00C47FB1 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C86FE8DD29C1A4F500C47FB1 /* MainViewModelTest.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		C8916B8029B8594C003F3295 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +183,9 @@
 		C8916BA229B8594E003F3295 /* RickAndMortyTests */ = {
 			isa = PBXGroup;
 			children = (
+				C86FE8D329C19E8E00C47FB1 /* Resources */,
+				C86FE8D229C19E8300C47FB1 /* Mocks */,
+				C86FE8DC29C1A4BB00C47FB1 /* Tests */,
 				C8916BA329B8594E003F3295 /* RickAndMortyTests.swift */,
 			);
 			path = RickAndMortyTests;
@@ -378,6 +411,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86FE8DB29C1A1A700C47FB1 /* character.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +454,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86FE8DE29C1A4F500C47FB1 /* MainViewModelTest.swift in Sources */,
+				C86FE8D529C19EC500C47FB1 /* APIManagerMock.swift in Sources */,
 				C8916BA429B8594E003F3295 /* RickAndMortyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

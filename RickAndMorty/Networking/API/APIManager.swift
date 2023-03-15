@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+protocol APIManagerStore {
+    func execute<T: Codable>(_ request: Request) -> Future<T, Error> where T : Codable
+}
+
 final class APIManager {
     static let shared = APIManager()
     
@@ -15,6 +19,18 @@ final class APIManager {
     
     private init() {}
     
+    // MARK: - Private
+    
+    private func request(from request: Request) -> URLRequest? {
+        guard let url = request.url else { return nil }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = request.httpMethod
+        return request
+    }
+}
+
+extension APIManager: APIManagerStore {
     public func execute<T: Codable>(_ request: Request) -> Future<T, Error> where T : Codable {
         return Future { [unowned self] promise in
             
@@ -51,15 +67,5 @@ final class APIManager {
             }
             task.resume()
         }
-    }
-    
-    // MARK: - Private
-    
-    private func request(from request: Request) -> URLRequest? {
-        guard let url = request.url else { return nil }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = request.httpMethod
-        return request
     }
 }
