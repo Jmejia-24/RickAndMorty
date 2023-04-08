@@ -11,32 +11,33 @@ import Combine
 @testable import RickAndMorty
 
 final class MainViewModelTest: XCTestCase {
-    private var viewModel: MainViewModel<App>!
+    private var viewModel: MainViewModel<App>?
     private var cancellables: Set<AnyCancellable> = []
-    
+
     override func setUpWithError() throws {
         try super.setUpWithError()
         viewModel = MainViewModel<App>(apiStore: APIManagerMock.shared)
     }
-    
+
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         viewModel = nil
     }
-    
+
     func testFetchCharacters() throws {
+        guard let viewModel = viewModel else { return }
         let loadCharacters = XCTestExpectation(description: "Load Characters")
         var characters = [Character]()
-        
+
         viewModel.$characters.dropFirst().sink { _ in
         } receiveValue: { response in
             characters = response
             loadCharacters.fulfill()
         }
         .store(in: &cancellables)
-        
+
         viewModel.fetchCharacters()
-        
+
         wait(for: [loadCharacters], timeout: 1)
         XCTAssertFalse(characters.isEmpty)
     }

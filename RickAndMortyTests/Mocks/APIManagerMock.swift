@@ -11,7 +11,7 @@ import Combine
 @testable import RickAndMorty
 
 final class APIManagerMock: APIManagerStore {
-    func execute<T>(_ request: RickAndMorty.Request) -> Future<T, Error> where T : Decodable, T : Encodable {
+    func execute<T>(_ request: RickAndMorty.Request) -> Future<T, Error> where T: Decodable, T: Encodable {
         return Future { promise in
             guard let urlPath = Bundle(for: APIManagerMock.self).url(forResource: request.endpoint.rawValue, withExtension: "json"),
                   let jsonString = (try? String(contentsOf: urlPath, encoding: .utf8)),
@@ -23,8 +23,8 @@ final class APIManagerMock: APIManagerStore {
             promise(.success(result))
         }
     }
-    
+
     static let shared = APIManagerMock()
-    
+
     private init() {}
 }

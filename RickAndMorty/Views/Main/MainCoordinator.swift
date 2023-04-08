@@ -10,14 +10,14 @@ import SwiftUI
 
 final class MainCoordinator<R: AppRouter> {
     let router: R
-    
+
     private lazy var primaryViewController: UIViewController = {
         let viewModel = MainViewModel<R>()
         viewModel.router = router
         let viewController = UIHostingController(rootView: MainView(viewModel: viewModel))
         return viewController
     }()
-    
+
     init(router: R) {
         self.router = router
     }

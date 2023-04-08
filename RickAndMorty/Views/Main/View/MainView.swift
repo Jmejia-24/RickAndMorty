@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView<T>: View where T: MainViewModelRepresentable {
     @StateObject var viewModel: T
     @State var refresh: Bool = false
-    
+
     var body: some View {
         GeometryReader {
             let size = $0.size
@@ -31,25 +31,25 @@ struct MainView<T>: View where T: MainViewModelRepresentable {
             viewModel.fetchCharacters()
         }
     }
-    
+
     @ViewBuilder func characterCell(_ character: Character) -> some View {
         GeometryReader {
             let size = $0.size
             let rect = $0.frame(in: .named("SCROLLVIEW"))
-            
+
             HStack(spacing: -25) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(character.name)
                         .lineLimit(4)
                         .font(.system(size: 18))
                         .fontWeight(.semibold)
-                    
+
                     Text("Status: \(character.status.rawValue)")
                         .font(.caption)
                         .foregroundColor(.gray)
-                    
+
                     Spacer()
-                    
+
                     HStack(spacing: 5) {
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -66,7 +66,7 @@ struct MainView<T>: View where T: MainViewModelRepresentable {
                         .shadow(color: .black.opacity(0.08), radius: 8, x: -5, y: -5)
                 }
                 .zIndex(1)
-                
+
                 ZStack {
                     CacheImage(url: URL(string: character.image))
                         .clipShape(
