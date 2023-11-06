@@ -22,7 +22,7 @@ struct CacheImage<Placeholder>: View where Placeholder: View {
     }
 
     init(url: URL?) where Placeholder == Color {
-        self.init(url: url, placeholder: { Color("neutral9") })
+        self.init(url: url, placeholder: { Color(.systemGray2) })
     }
 
     var body: some View {

@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol MainViewModelRepresentable: ObservableObject {
-    var characters: [Character] { get }
+    var state: ViewState<[Character]> { get }
     func fetchCharacters()
     func convertOffsetToRotation(_ rect: CGRect) -> CGFloat
     func buttomPadding(_ size: CGSize) -> CGFloat
@@ -20,7 +20,7 @@ final class MainViewModel<R: AppRouter> {
     private let apiStore: APIManagerStore
     private var cancellables = Set<AnyCancellable>()
 
-    @Published private(set) var characters = [Character]()
+    @Published var state: ViewState<[Character]> = .loading
 
     init(apiStore: APIManagerStore = APIManager.shared) {
         self.apiStore = apiStore
@@ -29,10 +29,11 @@ final class MainViewModel<R: AppRouter> {
 
 extension MainViewModel: MainViewModelRepresentable {
     func fetchCharacters() {
+        state = .loading
 
         let recieved = { (response: CharacterResponse) -> Void in
             DispatchQueue.main.async { [unowned self] in
-                characters = response.results
+                state = .success(response.results)
             }
         }
 
@@ -41,7 +42,9 @@ extension MainViewModel: MainViewModelRepresentable {
             case .finished:
                 break
             case .failure(let failure):
-                print(failure.localizedDescription)
+                DispatchQueue.main.async { [unowned self] in
+                    state = .error(failure.localizedDescription)
+                }
             }
         }
 

@@ -8,25 +8,29 @@
 import SwiftUI
 
 struct MainView<T>: View where T: MainViewModelRepresentable {
-    @StateObject var viewModel: T
+    @ObservedObject var viewModel: T
     @State var refresh: Bool = false
 
     var body: some View {
-        GeometryReader {
-            let size = $0.size
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 10) {
-                    ForEach(viewModel.characters, id: \.self) {
-                        characterCell($0)
+        StateView(state: viewModel.state) { characters in
+            GeometryReader {
+                let size = $0.size
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 10) {
+                        ForEach(characters, id: \.self) {
+                            characterCell($0)
+                        }
                     }
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 20)
+                    .padding(.bottom, viewModel.buttomPadding(size))
                 }
-                .padding(.horizontal, 15)
-                .padding(.vertical, 20)
-                .padding(.bottom, viewModel.buttomPadding(size))
+                .coordinateSpace(name: "SCROLLVIEW")
             }
-            .coordinateSpace(name: "SCROLLVIEW")
+            .padding(.top, 10)
+        } retryAction: {
+            viewModel.fetchCharacters()
         }
-        .padding(.top, 10)
         .onAppear {
             viewModel.fetchCharacters()
         }
