@@ -16,9 +16,12 @@ struct MainView<T>: View where T: MainViewModelRepresentable {
             GeometryReader {
                 let size = $0.size
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 10) {
-                        ForEach(characters, id: \.self) {
-                            characterCell($0)
+                    LazyVStack(spacing: 10) {
+                        ForEach(characters, id: \.self) { character in
+                            characterCell(character)
+                                .onAppear {
+                                    viewModel.fetchMoreCharacters(currentItem: character)
+                                }
                         }
                     }
                     .padding(.horizontal, 15)

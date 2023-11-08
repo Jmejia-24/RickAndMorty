@@ -11,6 +11,7 @@ import Combine
 protocol MainViewModelRepresentable: ObservableObject {
     var state: ViewState<[Character]> { get }
     func fetchCharacters()
+    func fetchMoreCharacters(currentItem character: Character?)
     func convertOffsetToRotation(_ rect: CGRect) -> CGFloat
     func buttomPadding(_ size: CGSize) -> CGFloat
 }
@@ -18,9 +19,15 @@ protocol MainViewModelRepresentable: ObservableObject {
 final class MainViewModel<R: AppRouter> {
     var router: R?
     private let apiStore: APIManagerStore
-    private var cancellables = Set<AnyCancellable>()
+
+    private var charactersCancellables = Set<AnyCancellable>()
+    private var moreCharactersCancellables = Set<AnyCancellable>()
+
+    private var isLoadingMoreCharacters = false
+    private var apiInfo: CharacterResponse.Info?
 
     @Published var state: ViewState<[Character]> = .loading
+    @Published var characters: [Character] = []
 
     init(apiStore: APIManagerStore = APIManager.shared) {
         self.apiStore = apiStore
@@ -32,8 +39,13 @@ extension MainViewModel: MainViewModelRepresentable {
         state = .loading
 
         let recieved = { (response: CharacterResponse) -> Void in
-            DispatchQueue.main.async { [unowned self] in
-                state = .success(response.results)
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+
+                self.characters = response.results
+                self.apiInfo = response.info
+
+                state = .success(self.characters)
             }
         }
 
@@ -50,7 +62,50 @@ extension MainViewModel: MainViewModelRepresentable {
 
         apiStore.execute(.listCharactersRequests)
             .sink(receiveCompletion: completion, receiveValue: recieved)
-            .store(in: &cancellables)
+            .store(in: &charactersCancellables)
+    }
+
+    func fetchMoreCharacters(currentItem character: Character?) {
+        let thresholdIndex = characters.index(characters.endIndex, offsetBy: -5)
+
+        guard let character = character,
+              !isLoadingMoreCharacters,
+              let nextPage = apiInfo?.next,
+              let url = URL(string: nextPage),
+              let request = Request(url: url),
+              characters.firstIndex(where: { $0.id == character.id }) == thresholdIndex else {
+            isLoadingMoreCharacters = false
+            return
+        }
+
+        isLoadingMoreCharacters = true
+
+        let recieved = { (response: CharacterResponse) -> Void in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+
+                self.apiInfo = response.info
+                self.characters.append(contentsOf: response.results)
+                isLoadingMoreCharacters = false
+
+                state = .success(self.characters)
+            }
+        }
+
+        let completion = { [weak self] (completion: Subscribers.Completion<Error>) -> Void in
+            guard let self else { return }
+
+            switch completion {
+            case .finished:
+                break
+            case .failure:
+                self.isLoadingMoreCharacters = false
+            }
+        }
+
+        apiStore.execute(request)
+            .sink(receiveCompletion: completion, receiveValue: recieved)
+            .store(in: &moreCharactersCancellables)
     }
 
     func convertOffsetToRotation(_ rect: CGRect) -> CGFloat {
